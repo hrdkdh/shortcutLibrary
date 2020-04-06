@@ -339,7 +339,7 @@ class searchMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         
         //구글 광고 삽입
         //진짜 ID : ca-app-pub-4567650475621525/8491751157
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-4567650475621525/8491751157"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
     }
@@ -576,7 +576,7 @@ class quizMenuController: UIViewController, GADInterstitialDelegate {
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-      let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+      let interstitial = GADInterstitial(adUnitID: "ca-app-pub-4567650475621525/5082951194")
       interstitial.delegate = self
       interstitial.load(GADRequest())
       return interstitial
@@ -864,7 +864,7 @@ class favoriteMenuController: UIViewController, UITableViewDelegate, UITableView
         
         //구글 광고 삽입
         //진짜 ID : ca-app-pub-4567650475621525/8491751157
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-4567650475621525/7527838053"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
     }
@@ -958,7 +958,7 @@ class settingMenuController: UIViewController, UITableViewDelegate, UITableViewD
         
         //구글 광고 삽입
         //진짜 ID : ca-app-pub-4567650475621525/8491751157
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = "ca-app-pub-4567650475621525/8824290620"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
     }
