@@ -338,7 +338,8 @@ class searchMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         searchTextField.delegate = self
         
         //구글 광고 삽입
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //진짜 ID : ca-app-pub-4567650475621525/8491751157
+        //진짜 ID : ca-app-pub-4567650475621525/8491751157
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
     }
@@ -530,7 +531,7 @@ class searchMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 }
 
-class quizMenuController: UIViewController {
+class quizMenuController: UIViewController, GADInterstitialDelegate {
     @IBOutlet weak var quizStartView: UIView!
     @IBOutlet weak var quizContentView: UIView!
 
@@ -549,12 +550,14 @@ class quizMenuController: UIViewController {
     @IBOutlet weak var quizContentViewOption4: UIButton!
     @IBOutlet weak var quizContentViewOption5: UIButton!
     
+    //구글 전면광고 객체 생성
+    var interstitial: GADInterstitial!
     var questionData : Array<[String : Any?]> = []
     let questionMaxCnt : Int = 10
     var questionCntNo : Int = 1
     var score : Int = 0
+    var wantMoreQuizCheck = false
     
-    @IBOutlet weak var test: UILabel!
     override func loadView() {
         super.loadView()
         quizContentView.isHidden = true
@@ -564,6 +567,7 @@ class quizMenuController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("quiz menu view loaded")
+        interstitial = createAndLoadInterstitial()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -571,12 +575,63 @@ class quizMenuController: UIViewController {
         //print("search view did appeared")
     }
     
+    func createAndLoadInterstitial() -> GADInterstitial {
+      let interstitial = GADInterstitial(adUnitID: "ca-app-pub-3940256099942544/4411468910")
+      interstitial.delegate = self
+      interstitial.load(GADRequest())
+      return interstitial
+    }
+
+    //광고 닫음 버튼을 클릭함
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        interstitial = createAndLoadInterstitial()
+        loadQuiz()
+    }
+    
+    //델리게이트에게 광고 요청이 성공했음을 알림
+    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+        print("interstitialDidReceiveAd")
+    }
+
+    //델리게이트에게 광고 요청이 실패했음을 알림
+    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+        print("interstitial:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+
+    //델리게이트에게 광고가 나타날 것임을 알림
+    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
+        print("interstitialWillPresentScreen")
+    }
+
+    //광고 닫음 버튼을 클릭할 것임을 알림
+    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
+        print("interstitialWillDismissScreen")
+    }
+
+    //광고를 터치하여 다른 앱이나 화면으로 넘어갔음을 알림
+    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
+        print("interstitialWillLeaveApplication")
+        loadQuiz()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
         
     @IBAction func quizStartBtnClicked(_ sender: UIButton) {
-        loadQuiz()
+        //퀴즈에 처음 참여할 때는 광고없이 바로 체험하도록 함
+        if wantMoreQuizCheck { //두 번째 이상 퀴즈에 응하는 것인가?
+            if interstitial.isReady {
+                //광고가 로드되었다면 광고 시청 후 넘어가도록 함
+                interstitial.present(fromRootViewController: self)
+            } else {
+                //광고가 로드되지 않았다면 바로 퀴즈 실행화면으로 넘어감
+                print("Ad wasn't ready")
+                loadQuiz()
+            }
+        } else {
+            loadQuiz()
+        }
     }
     
     @IBAction func quizQuitBtnClicked(_ sender: Any) {
@@ -653,7 +708,10 @@ class quizMenuController: UIViewController {
                 
                 //문항번호 초기화
                 questionCntNo = 1
-
+                
+                //퀴즈에 참여하였음을 기록
+                wantMoreQuizCheck = true
+                
                 //첫 문제 출제
                 printQuiz(thisQuestionCntNo: questionCntNo)
                 
@@ -679,7 +737,6 @@ class quizMenuController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    
     func printQuiz(thisQuestionCntNo: Int) {
         quizContentViewNowQuestionNo.text = String(thisQuestionCntNo)+"/"+String(questionMaxCnt)
         let questionCntNoForArr = thisQuestionCntNo-1
@@ -792,6 +849,7 @@ class quizMenuController: UIViewController {
 class favoriteMenuController: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     @IBOutlet weak var favoriteResultTable: UITableView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     override func loadView() {
         super.loadView()
@@ -803,6 +861,12 @@ class favoriteMenuController: UIViewController, UITableViewDelegate, UITableView
         print("favorite menu view loaded")
         favoriteResultTable.delegate = self
         favoriteResultTable.dataSource = self
+        
+        //구글 광고 삽입
+        //진짜 ID : ca-app-pub-4567650475621525/8491751157
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -879,6 +943,7 @@ class favoriteMenuController: UIViewController, UITableViewDelegate, UITableView
 class settingMenuController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var settingTable: UITableView!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     override func loadView() {
         super.loadView()
@@ -890,6 +955,12 @@ class settingMenuController: UIViewController, UITableViewDelegate, UITableViewD
         print("setting menu view loaded")
         settingTable.delegate = self
         settingTable.dataSource = self
+        
+        //구글 광고 삽입
+        //진짜 ID : ca-app-pub-4567650475621525/8491751157
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
     }
     
     override func didReceiveMemoryWarning() {
