@@ -9,7 +9,7 @@
 import UIKit
 import Realm
 import RealmSwift
-//import GoogleMobileAds
+import GoogleMobileAds
 
 //Setting class에서 obj추가되면 반드시 아래 배열에도 추가할 것!
 let settingFieldList=["powerpoint", "excel", "word", "hangul", "chrome", "windows"]
@@ -323,8 +323,7 @@ class searchMenuController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var searchTextField: UISearchBar!
     @IBOutlet weak var searchResultTable: UITableView!
-//    @IBOutlet weak var bannerView: GADBannerView!
-    
+    @IBOutlet weak var bannerView: GADBannerView!
     
     override func loadView() {
         super.loadView()
@@ -339,9 +338,9 @@ class searchMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         searchTextField.delegate = self
         
         //구글 광고 삽입
-//        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-//        bannerView.rootViewController = self
-//        bannerView.load(GADRequest())
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716" //진짜 ID : ca-app-pub-4567650475621525/8491751157
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
     }
     
     override func viewDidAppear(_ animated: Bool) {

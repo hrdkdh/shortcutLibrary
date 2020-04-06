@@ -29,7 +29,7 @@
                                         </connections>
                                     </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="제시된 문제를 풀면서 단축키를 쉽게 익힐 수 있습니다." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6ry-4b-BhD">
-                                        <rect key="frame" x="18" y="265" width="339" height="73"/>
+                                        <rect key="frame" x="18" y="265" width="338" height="73"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -64,7 +64,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="문제" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUx-Ue-R5b">
-                                        <rect key="frame" x="89" y="118" width="269" height="87"/>
+                                        <rect key="frame" x="88" y="118" width="269" height="87"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <rect key="contentStretch" x="0.10000000000000001" y="0.10000000000000001" width="1" height="1"/>
@@ -260,8 +260,8 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SsH-Lc-8D6">
-                                        <rect key="frame" x="28" y="0.0" width="320" height="50"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SsH-Lc-8D6" customClass="GADBannerView" customModule="shortcutLibrary" customModuleProvider="target">
+                                        <rect key="frame" x="27" y="0.0" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
@@ -284,6 +284,7 @@
                     <tabBarItem key="tabBarItem" title="단축키 사전" image="magnifyingglass" catalog="system" id="uFj-8s-7QL"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="bannerView" destination="SsH-Lc-8D6" id="xtO-yT-fjM"/>
                         <outlet property="searchResultTable" destination="Mh2-sP-63R" id="aNr-xB-F3J"/>
                         <outlet property="searchTextField" destination="DrQ-0g-vwl" id="YKA-3c-2Zu"/>
                     </connections>
@@ -417,7 +418,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJb-Gb-uAz">
-                                                    <rect key="frame" x="81" y="47" width="251" height="42"/>
+                                                    <rect key="frame" x="81" y="47" width="250" height="42"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>

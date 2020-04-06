@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,30 +12,13 @@
 		12626CC1242593710099CC91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12626CC0242593710099CC91 /* ViewController.swift */; };
 		12626CC4242593710099CC91 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12626CC2242593710099CC91 /* Main.storyboard */; };
 		12626CC6242593750099CC91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12626CC5242593750099CC91 /* Assets.xcassets */; };
+		12B90555243B521600BA741C /* Pods_shortcutLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85806E232F09C0262AC37809 /* Pods_shortcutLibrary.framework */; };
 		12C65103243B430A00407F80 /* 200331.csv in Resources */ = {isa = PBXBuildFile; fileRef = 12C65102243B430A00407F80 /* 200331.csv */; };
 		12DB8816242A4D92007D0C17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12DB8815242A4D92007D0C17 /* LaunchScreen.storyboard */; };
-		12F50256242ECD8900146DC7 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F50254242ECD8800146DC7 /* RealmSwift.framework */; };
-		12F50257242ECD8900146DC7 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 12F50254242ECD8800146DC7 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		12F50258242ECD8900146DC7 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12F50255242ECD8900146DC7 /* Realm.framework */; };
-		12F50259242ECD8900146DC7 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 12F50255242ECD8900146DC7 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		12F5024B242ECCF200146DC7 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				12F50259242ECD8900146DC7 /* Realm.framework in Embed Frameworks */,
-				12F50257242ECD8900146DC7 /* RealmSwift.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		00EF2A183CBF0EB411313EAE /* Pods-shortcutLibrary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shortcutLibrary.debug.xcconfig"; path = "Target Support Files/Pods-shortcutLibrary/Pods-shortcutLibrary.debug.xcconfig"; sourceTree = "<group>"; };
 		12626CB9242593710099CC91 /* shortcutLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = shortcutLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12626CBC242593710099CC91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12626CBE242593710099CC91 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,8 +28,8 @@
 		12C65102243B430A00407F80 /* 200331.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 200331.csv; path = ../../../../Downloads/200331.csv; sourceTree = "<group>"; };
 		12DB880E242A3A94007D0C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		12DB8815242A4D92007D0C17 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		12F50254242ECD8800146DC7 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = shortcutLibrary/RealmSwift.framework; sourceTree = "<group>"; };
-		12F50255242ECD8900146DC7 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = shortcutLibrary/Realm.framework; sourceTree = "<group>"; };
+		85806E232F09C0262AC37809 /* Pods_shortcutLibrary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_shortcutLibrary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90B8626311F4975586866A1B /* Pods-shortcutLibrary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-shortcutLibrary.release.xcconfig"; path = "Target Support Files/Pods-shortcutLibrary/Pods-shortcutLibrary.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12F50258242ECD8900146DC7 /* Realm.framework in Frameworks */,
-				12F50256242ECD8900146DC7 /* RealmSwift.framework in Frameworks */,
+				12B90555243B521600BA741C /* Pods_shortcutLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +50,7 @@
 				12626CBB242593710099CC91 /* shortcutLibrary */,
 				12626CBA242593710099CC91 /* Products */,
 				12F50253242ECD8800146DC7 /* Frameworks */,
+				8CD46051A4825610512B0557 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,10 +80,18 @@
 		12F50253242ECD8800146DC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				12F50255242ECD8900146DC7 /* Realm.framework */,
-				12F50254242ECD8800146DC7 /* RealmSwift.framework */,
+				85806E232F09C0262AC37809 /* Pods_shortcutLibrary.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8CD46051A4825610512B0557 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				00EF2A183CBF0EB411313EAE /* Pods-shortcutLibrary.debug.xcconfig */,
+				90B8626311F4975586866A1B /* Pods-shortcutLibrary.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,11 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 12626CCD242593750099CC91 /* Build configuration list for PBXNativeTarget "shortcutLibrary" */;
 			buildPhases = (
+				2FEAC3E21D1EBEE27B961A4E /* [CP] Check Pods Manifest.lock */,
 				12626CB5242593710099CC91 /* Sources */,
 				12626CB6242593710099CC91 /* Frameworks */,
 				12626CB7242593710099CC91 /* Resources */,
-				12DB8814242A3F06007D0C17 /* ShellScript */,
-				12F5024B242ECCF200146DC7 /* Embed Frameworks */,
+				A5BA57F44951D67FFF3BBFB9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -173,7 +164,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		12DB8814242A3F06007D0C17 /* ShellScript */ = {
+		2FEAC3E21D1EBEE27B961A4E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -181,14 +172,36 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-shortcutLibrary-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5BA57F44951D67FFF3BBFB9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-shortcutLibrary/Pods-shortcutLibrary-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-shortcutLibrary/Pods-shortcutLibrary-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-shortcutLibrary/Pods-shortcutLibrary-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -337,19 +350,20 @@
 		};
 		12626CCE242593750099CC91 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00EF2A183CBF0EB411313EAE /* Pods-shortcutLibrary.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J65ZAZ2PMQ;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/shortcutLibrary";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = shortcutLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_LDFLAGS = "";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = hrdkdh.shortcutLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -359,19 +373,20 @@
 		};
 		12626CCF242593750099CC91 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90B8626311F4975586866A1B /* Pods-shortcutLibrary.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J65ZAZ2PMQ;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/shortcutLibrary";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = shortcutLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_LDFLAGS = "";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = hrdkdh.shortcutLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
