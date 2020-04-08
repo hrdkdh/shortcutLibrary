@@ -13,8 +13,28 @@ import GoogleMobileAds
 
 //Setting class에서 obj추가되면 반드시 아래 배열에도 추가할 것!
 let settingFieldList=["powerpoint", "excel", "word", "hangul", "chrome", "windows"]
-let csvFileName="200331"
+let settingFieldListHangul=["파워포인트", "엑셀", "워드", "아래아한글", "크롬", "윈도우"]
+let csvFileName="200407"
 let csvFileType="csv"
+
+//테스트 광고 아이디
+//let adUnitId1 = "ca-app-pub-3940256099942544/2934735716"
+//let adUnitId2 = "ca-app-pub-3940256099942544/4411468910" //전면광고
+//let adUnitId3 = "ca-app-pub-3940256099942544/2934735716"
+//let adUnitId4 = "ca-app-pub-3940256099942544/2934735716"
+
+//스크린샷용 가짜 광고 아이디
+let adUnitId1 = "ca-app-pub"
+let adUnitId2 = "ca-app-pub"
+let adUnitId3 = "ca-app-pub"
+let adUnitId4 = "ca-app-pub"
+
+//진짜 광고 아이디
+//let adUnitId1 = "ca-app-pub-4567650475621525/8491751157"
+//let adUnitId2 = "ca-app-pub-4567650475621525/5082951194"
+//let adUnitId3 = "ca-app-pub-4567650475621525/7527838053"
+//let adUnitId4 = "ca-app-pub-4567650475621525/8824290620"
+
 
 var savedFavoriteData : Array<[String : String]> = []
 var searchTableReloadCheck=false
@@ -23,6 +43,7 @@ var searchTableReloadCheck=false
 class Shortcut : Object {
     @objc dynamic var pk : Int = 0
     @objc dynamic var category : String = ""
+    @objc dynamic var category_hangul : String = ""
     @objc dynamic var ctrl : String = ""
     @objc dynamic var alt : String = ""
     @objc dynamic var shift : String = ""
@@ -69,10 +90,10 @@ class setupDatabase {
             var thisFavorite : Int = 0
             for row in orgArr {
                 index+=1
-                if Int(row[10]) != nil { thisScore=Int(row[11])! }
-                if Int(row[11]) != nil { thisFavorite=Int(row[12])! }
+                if Int(row[12]) != nil { thisScore=Int(row[12])! }
+                if Int(row[13]) != nil { thisFavorite=Int(row[13])! }
 
-                let rowList=[row[2],row[3],row[4],row[5],row[6],row[7],row[8]]
+                let rowList=[row[3],row[4],row[5],row[6],row[7],row[8],row[9]]
                 var thiscommandKeyStr=""
                 var kIndex=0
                 for keyStr in rowList {
@@ -92,15 +113,16 @@ class setupDatabase {
                     addShortcut(
                         pk: thisPk,
                         category: row[1],
-                        ctrl: row[2],
-                        alt: row[3],
-                        shift: row[4],
-                        key1: row[5],
-                        key2: row[6],
-                        key3: row[7],
-                        key4: row[8],
-                        commandString: row[9],
-                        searchString: row[10],
+                        category_hangul: row[2],
+                        ctrl: row[3],
+                        alt: row[4],
+                        shift: row[5],
+                        key1: row[6],
+                        key2: row[7],
+                        key3: row[8],
+                        key4: row[9],
+                        commandString: row[10],
+                        searchString: row[11],
                         score: thisScore,
                         favorite: thisFavorite,
                         commandKeyStr: thiscommandKeyStr
@@ -245,10 +267,11 @@ class setupDatabase {
             }
         }
     }
-    func addShortcut(pk:Int, category:String, ctrl:String, alt:String, shift:String, key1:String, key2:String, key3:String, key4:String, commandString:String, searchString:String, score: Int, favorite:Int, commandKeyStr:String) {
+    func addShortcut(pk:Int, category:String, category_hangul:String, ctrl:String, alt:String, shift:String, key1:String, key2:String, key3:String, key4:String, commandString:String, searchString:String, score: Int, favorite:Int, commandKeyStr:String) {
         let shortcut = Shortcut()
         shortcut.pk=pk
         shortcut.category=category
+        shortcut.category_hangul=category_hangul
         shortcut.ctrl=ctrl
         shortcut.alt=alt
         shortcut.shift=shift
@@ -338,8 +361,7 @@ class searchMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         searchTextField.delegate = self
         
         //구글 광고 삽입
-        //진짜 ID : ca-app-pub-4567650475621525/8491751157
-        bannerView.adUnitID = "ca-app-pub-4567650475621525/8491751157"
+        bannerView.adUnitID = adUnitId1
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
     }
@@ -353,6 +375,12 @@ class searchMenuController: UIViewController, UITableViewDelegate, UITableViewDa
             searchResultTable.reloadData()
             searchTableReloadCheck=false
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //구글 광고 새롭게 로드
+        bannerView.load(GADRequest())
     }
     
     override func didReceiveMemoryWarning() {
@@ -377,7 +405,7 @@ class searchMenuController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         let searchText=searchTextField.text!
         if searchText != "" && query != "" {
-            query=query+" and (commandString CONTAINS '"+searchText+"' or searchString CONTAINS '"+searchText+"' or commandKeyStr CONTAINS '"+searchText+"')"
+            query=query+" and (commandString CONTAINS[c] '"+searchText+"' or searchString CONTAINS[c] '"+searchText+"' or commandKeyStr CONTAINS[c] '"+searchText+"' or category CONTAINS[c] '"+searchText+"' or category_hangul CONTAINS[c] '"+searchText+"')"
         }
         //print(query)
         return query
@@ -505,7 +533,7 @@ class searchMenuController: UIViewController, UITableViewDelegate, UITableViewDa
             case "word":
                 standardNameKor="워드"
             case "hangul":
-                standardNameKor="한글워드"
+                standardNameKor="아래아한글"
             case "chrome":
                 standardNameKor="크롬"
             case "windows":
@@ -576,7 +604,7 @@ class quizMenuController: UIViewController, GADInterstitialDelegate {
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-      let interstitial = GADInterstitial(adUnitID: "ca-app-pub-4567650475621525/5082951194")
+      let interstitial = GADInterstitial(adUnitID: adUnitId2)
       interstitial.delegate = self
       interstitial.load(GADRequest())
       return interstitial
@@ -863,8 +891,7 @@ class favoriteMenuController: UIViewController, UITableViewDelegate, UITableView
         favoriteResultTable.dataSource = self
         
         //구글 광고 삽입
-        //진짜 ID : ca-app-pub-4567650475621525/8491751157
-        bannerView.adUnitID = "ca-app-pub-4567650475621525/7527838053"
+        bannerView.adUnitID = adUnitId3
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
     }
@@ -872,6 +899,12 @@ class favoriteMenuController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         favoriteResultTable.reloadData()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //구글 광고 새롭게 로드
+        bannerView.load(GADRequest())
     }
     
     override func didReceiveMemoryWarning() {
@@ -957,9 +990,14 @@ class settingMenuController: UIViewController, UITableViewDelegate, UITableViewD
         settingTable.dataSource = self
         
         //구글 광고 삽입
-        //진짜 ID : ca-app-pub-4567650475621525/8491751157
-        bannerView.adUnitID = "ca-app-pub-4567650475621525/8824290620"
+        bannerView.adUnitID = adUnitId4
         bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        //구글 광고 새롭게 로드
         bannerView.load(GADRequest())
     }
     
